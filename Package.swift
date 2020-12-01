@@ -21,5 +21,8 @@ let package = Package(
         .target(
             name: "FXSwifter",
             dependencies: []),
+        .testTarget(
+            name: "FXSwifterTests",
+            dependencies: ["FXSwifter"]),
     ]
 )
