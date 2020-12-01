@@ -1,4 +1,4 @@
-public struct TakeIterator<I: IteratorProtocol>: IteratorProtocol {
+public struct TakeIterator<I: IteratorProtocol>: Sequence, IteratorProtocol {
     public typealias Element = I.Element
     
     private var iterator: I
@@ -26,5 +26,15 @@ public extension IteratorProtocol {
     }
 }
 
+public extension Sequence {
+    func take(count: Int) -> TakeIterator<Iterator> {
+        return TakeIterator(iterator: self.makeIterator(), takaCount: count)
+    }
+}
 
+public extension Sequence where Self: IteratorProtocol {
+    func take(count: Int) -> TakeIterator<Iterator> {
+        return TakeIterator(iterator: self.makeIterator(), takaCount: count)
+    }
+}
 
