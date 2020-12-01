@@ -4,4 +4,5 @@
 
 ### IteratorProtocol
 - [x] take
+- [x] takeWhile
 - [ ] skip

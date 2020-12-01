@@ -1,7 +1,7 @@
 import XCTest
 @testable import FXSwifter
 
-final class FXSwifterTests: XCTestCase {
+final class FXSwifterTakeWhileTests: XCTestCase {
     func testLess() {
         let arr: Array<String> = ["str", "\(arc4random())"]
         
