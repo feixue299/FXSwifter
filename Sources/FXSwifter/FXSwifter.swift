@@ -35,8 +35,8 @@ public struct TakeWhileIterator<I: IteratorProtocol>: Sequence, IteratorProtocol
     public mutating func next() -> I.Element? {
         if !isFinished {
             if let next = iterator.next() {
-                isFinished = closure(next)
-                return next
+                isFinished = !closure(next)
+                return isFinished ? nil : next
             } else {
                 isFinished = true
                 return nil
@@ -87,12 +87,14 @@ public struct SkipWhileIterator<I: IteratorProtocol>: Sequence, IteratorProtocol
             hasSkipped = true
             guard var next = iterator.next() else { return nil }
             
-            while !closure(next) {
+            while closure(next) {
                 guard let nx = iterator.next() else { return nil }
                 next = nx
             }
+            return next
+        } else {
+            return iterator.next()
         }
-        return iterator.next()
     }
 }
 

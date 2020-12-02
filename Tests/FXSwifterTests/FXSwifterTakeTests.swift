@@ -5,29 +5,31 @@ final class FXSwifterTakeTests: XCTestCase {
     func testLess() {
         let arr: Array<String> = ["str", "\(arc4random())"]
         
-        let takeArr = arr.take(count: 3)
-        for (index, item) in takeArr.enumerated() {
-            XCTAssert(item == arr[index])
+        var takeArr = arr.take(count: 3)
+        
+        for index in 0..<2 {
+            XCTAssert(takeArr.next() == arr[index])
         }
+        XCTAssert(takeArr.next() == nil)
     }
     
     func testEquatal() {
-        
         let arr: Array<String> = ["str", "\(arc4random())", "\(arc4random())"]
-
-        let takeArr = arr.take(count: 3)
-        for (index, item) in takeArr.enumerated() {
-            XCTAssert(item == arr[index])
+        var takeArr = arr.take(count: 3)
+        
+        for index in 0..<3 {
+            XCTAssert(takeArr.next() == arr[index])
         }
+        XCTAssert(takeArr.next() == nil)
     }
     
     func testMore() {
         let arr: Array<String> = ["str", "\(arc4random())", "\(arc4random())", "\(arc4random())"]
-
-        let takeArr = arr.take(count: 3)
+        var takeArr = arr.take(count: 3)
         
-        for (index, item) in takeArr.enumerated() {
-            XCTAssert(item == arr[index])
+        for index in 0..<3 {
+            XCTAssert(takeArr.next() == arr[index])
         }
+        XCTAssert(takeArr.next() == nil)
     }
 }

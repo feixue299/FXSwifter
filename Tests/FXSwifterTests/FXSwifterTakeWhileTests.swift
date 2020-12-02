@@ -2,32 +2,27 @@ import XCTest
 @testable import FXSwifter
 
 final class FXSwifterTakeWhileTests: XCTestCase {
+    let arr: Array<Int> = [1, 2, 3]
+    
     func testLess() {
-        let arr: Array<String> = ["str", "\(arc4random())"]
-        
-        let takeArr = arr.take(count: 3)
-        for (index, item) in takeArr.enumerated() {
-            XCTAssert(item == arr[index])
-        }
+        var takeArr = arr.takeWhile(closure: { $0 > 3 })
+        XCTAssert(takeArr.next() == nil)
     }
     
     func testEquatal() {
+        var takeArr = arr.takeWhile(closure: { $0 <= 3 })
         
-        let arr: Array<String> = ["str", "\(arc4random())", "\(arc4random())"]
-
-        let takeArr = arr.take(count: 3)
-        for (index, item) in takeArr.enumerated() {
-            XCTAssert(item == arr[index])
-        }
+        XCTAssert(takeArr.next() == 1)
+        XCTAssert(takeArr.next() == 2)
+        XCTAssert(takeArr.next() == 3)
+        XCTAssert(takeArr.next() == nil)
     }
     
     func testMore() {
-        let arr: Array<String> = ["str", "\(arc4random())", "\(arc4random())", "\(arc4random())"]
-
-        let takeArr = arr.take(count: 3)
+        var takeArr = arr.takeWhile(closure: { $0 <= 2 })
         
-        for (index, item) in takeArr.enumerated() {
-            XCTAssert(item == arr[index])
-        }
+        XCTAssert(takeArr.next() == 1)
+        XCTAssert(takeArr.next() == 2)
+        XCTAssert(takeArr.next() == nil)
     }
 }
